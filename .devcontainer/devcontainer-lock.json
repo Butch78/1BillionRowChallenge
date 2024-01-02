@@ -4,6 +4,11 @@
       "version": "1.0.1",
       "resolved": "ghcr.io/devcontainers-contrib/features/ruff@sha256:8fcd98b1746eef1b5b08e0f1e011f5df8362bdd1bb982ea3c0722ed578121e57",
       "integrity": "sha256:8fcd98b1746eef1b5b08e0f1e011f5df8362bdd1bb982ea3c0722ed578121e57"
+    },
+    "ghcr.io/devcontainers/features/rust:1": {
+      "version": "1.1.1",
+      "resolved": "ghcr.io/devcontainers/features/rust@sha256:e81d6a952842a4e10d1e4dbb9cb295a1ead44befd8212522a67b8867427b929d",
+      "integrity": "sha256:e81d6a952842a4e10d1e4dbb9cb295a1ead44befd8212522a67b8867427b929d"
     }
   }
 }
