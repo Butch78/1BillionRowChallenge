@@ -7,10 +7,10 @@ Running the code on my laptop, which is equipped with an i7-1185G7 @ 3.00GHz and
 
 | Implementation | Time | 
 |----------------|------|
-|        Python        |   33.76s   |
-|        Python + Pandas        |   39.21s   |
-|        Python + Polars        |   4.94 s   |
-|        Rust + Polars        |   4.5s   |  
-|       Rust STD Libray        |   18.5s  |
+|        Python        |  - Crashed   |
+|        Python + Pandas        |   - Crashed   |
+|        Python + Polars        |   61.41 sec   |
+|        Rust + Polars        |   39s   |  
+|       Rust STD Libray        |   149.69s  |
 
 

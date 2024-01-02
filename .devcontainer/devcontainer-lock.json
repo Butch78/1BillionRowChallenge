@@ -1,0 +1,9 @@
+{
+  "features": {
+    "ghcr.io/devcontainers-contrib/features/ruff:1": {
+      "version": "1.0.1",
+      "resolved": "ghcr.io/devcontainers-contrib/features/ruff@sha256:8fcd98b1746eef1b5b08e0f1e011f5df8362bdd1bb982ea3c0722ed578121e57",
+      "integrity": "sha256:8fcd98b1746eef1b5b08e0f1e011f5df8362bdd1bb982ea3c0722ed578121e57"
+    }
+  }
+}

@@ -13,7 +13,7 @@ def create_polars_df():
             mean = pl.col("measure").mean()
         )
         .sort("station")
-        .collect()
+        .collect(streaming=True)
     )
 
 
@@ -115,11 +115,11 @@ def create_df(filename):
 
 if __name__ == "__main__":
     import time
-    start_time = time.time()
-    df = create_df("measurements.txt")
-    took = time.time() - start_time
-    print(f"Took: {took:.2f} sec")
-    print(df)
+    # start_time = time.time()
+    # df = create_df("measurements.txt")
+    # took = time.time() - start_time
+    # print(f"Took: {took:.2f} sec")
+    # print(df)
 
     start_time = time.time()
     df = create_polars_df()
@@ -128,10 +128,10 @@ if __name__ == "__main__":
     print(df.head())
     print(f"Polars Took: {took:.2f} sec")
 
-    start_time = time.time()
-    df = create_pandas_df()
-    took = time.time() - start_time
-    print(df)
-    print(df.head())
-    print(f"Pandas Took: {took:.2f} sec")
+    # start_time = time.time()
+    # df = create_pandas_df()
+    # took = time.time() - start_time
+    # print(df)
+    # print(df.head())
+    # print(f"Pandas Took: {took:.2f} sec")
 

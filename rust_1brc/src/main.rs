@@ -1,58 +1,81 @@
 use polars::prelude::*;
-use std::collections::HashMap;
-use std::error::Error;
+/// Implementation for the 1 Billion Row Challenge, set here: https://www.morling.dev/blog/one-billion-row-challenge/
+use std::collections::BTreeMap;
+use std::fmt::{Display, Formatter};
 use std::fs::File;
 use std::io::{BufRead, BufReader};
+use std::str::FromStr;
 use std::time::Instant;
 
-fn main() {
-    let start = Instant::now();
-    if let Err(err) = run() {
-        eprintln!("Error: {}", err);
-    }
-    println!("Time: {:?}", start.elapsed());
-
-    let start = Instant::now();
-    let df = run_polars().unwrap();
-    println!("Time: {:?}", start.elapsed());
-    println!("{:?}", df);
+struct Aggregate {
+    min: f64,
+    max: f64,
+    mean: f64,
+    sum: f64,
+    measurements: usize,
 }
 
-fn run() -> Result<(), Box<dyn Error>> {
-    let file = File::open("measurements.txt")?;
-    let reader = BufReader::new(file);
+impl Display for Aggregate {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{:.1}/{:.1}/{:.1}", self.min, self.mean, self.max)
+    }
+}
 
-    let mut measurements: HashMap<String, Vec<f64>> = HashMap::new();
+fn run_std() {
+    let now = Instant::now();
 
+    let f = File::open("../measurements.txt").unwrap();
+    let reader = BufReader::new(f);
+
+    let mut res_map = BTreeMap::<String, Aggregate>::new();
     for line in reader.lines() {
-        let line = line?;
-        let parts: Vec<&str> = line.split(';').collect();
-        if parts.len() == 2 {
-            let station = parts[0].to_string();
-            let measure = parts[1].parse::<f64>()?;
-            measurements
-                .entry(station)
-                .or_insert(Vec::new())
-                .push(measure);
+        if let Some((name_str, measurement_str)) = line.unwrap().split_once(";") {
+            let name_string = name_str.to_string();
+            let measurement = f64::from_str(measurement_str.trim()).unwrap();
+            if let Some(aggr) = res_map.get_mut(&name_string) {
+                if measurement.lt(&aggr.min) {
+                    aggr.min = measurement;
+                }
+                if measurement.gt(&aggr.min) {
+                    aggr.max = measurement;
+                }
+                // Note: for performance, we calculate the mean at the end
+                aggr.sum += measurement;
+                aggr.measurements += 1;
+            } else {
+                res_map.insert(
+                    name_string,
+                    Aggregate {
+                        min: measurement,
+                        max: measurement,
+                        mean: measurement,
+                        sum: measurement,
+                        measurements: 1,
+                    },
+                );
+            }
         }
     }
 
-    for (station, measures) in measurements {
-        let min = measures.iter().cloned().fold(f64::INFINITY, f64::min);
-        let mean = measures.iter().sum::<f64>() / measures.len() as f64;
-        let max = measures.iter().cloned().fold(f64::NEG_INFINITY, f64::max);
-        println!("{}, {}, {}, {}", station, min, mean, max);
+    for aggr in res_map.values_mut() {
+        aggr.mean = aggr.sum / (aggr.measurements as f64)
     }
 
-    Ok(())
+    for (name, aggr) in res_map {
+        println!("{}={}", name, aggr)
+    }
+
+    println!("Time={} μs", now.elapsed().as_micros())
 }
 
 fn run_polars() -> Result<DataFrame, PolarsError> {
+    let now = Instant::now();
+
     let f1: Field = Field::new("station", DataType::String);
     let f2: Field = Field::new("measure", DataType::Float64);
     let sc: Schema = Schema::from_iter(vec![f1, f2]);
 
-    let q = LazyCsvReader::new("measurements.txt")
+    let q = LazyCsvReader::new("../measurements.txt")
         .has_header(false)
         .with_schema(Some(Arc::new(sc)))
         .with_separator(b';')
@@ -63,7 +86,17 @@ fn run_polars() -> Result<DataFrame, PolarsError> {
             col("measure").alias("mean").mean(),
             col("measure").alias("max").max(),
         ])
-        .sort("station", Default::default());
+        .sort("station", Default::default())
+        .with_streaming(true);
 
-    Ok(q.collect()?)
+    let df = q.collect()?;
+
+    println!("Time={} μs", now.elapsed().as_secs());
+
+    Ok(df)
+}
+
+fn main() {
+    run_polars();
+    // run_std();
 }
