@@ -26,7 +26,7 @@ Running the code on my laptop, which is equipped with an i7-1185G7 @ 3.00GHz and
 
 | Implementation | Time | 
 |----------------|------|
-|        Python        |  - Crashed   |
+|        Python        |  - Crashed   | sec
 |        Python + Pandas        |   - Crashed   |
 |        Python + Polars        |   33.86 sec   |
 |        Rust + Polars        |   39 sec   |  
