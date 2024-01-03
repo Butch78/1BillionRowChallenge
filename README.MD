@@ -3,7 +3,8 @@ I saw this [Blog Post](https://www.morling.dev/blog/one-billion-row-challenge/) 
 To run my code you will need to have Rust & Python installed, or you can run it in a Dev Container.
 
 Thanks to [Coriolinus](https://github.com/coriolinus/1brc) for the full implementation in Rust and the updated generation code.
-Thanks to [Koen Vossen](Ghttps://github.com/koenvo) for the Python implementation for both the Polars & Python STD Library solutions.
+
+Thanks to [Koen Vossen](https://github.com/koenvo) for the Python implementation for both the Polars & Python STD Library solutions.
 
 ## Generating the data file
 
