@@ -28,7 +28,7 @@ Running the code on my laptop, which is equipped with an i7-1185G7 @ 3.00GHz and
 |----------------|------|
 |        Python        |  - Crashed   |
 |        Python + Pandas        |   - Crashed   |
-|        Python + Polars        |   61.41 sec   |
+|        Python + Polars        |   33.86 sec   |
 |        Rust + Polars        |   39 sec   |  
 |       Rust STD Libray        |   17 sec  |
 

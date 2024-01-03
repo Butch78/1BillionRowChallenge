@@ -4,7 +4,9 @@ import polars as pl
 import pandas as pd
 
 def create_polars_df():
+    pl.Config.set_streaming_chunk_size(4000000)
     return (
+        
         pl.scan_csv("measurements.txt", separator=";", has_header=False, new_columns=["station", "measure"])
         .group_by(by="station")
         .agg(
