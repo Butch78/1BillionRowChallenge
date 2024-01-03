@@ -2,8 +2,8 @@ I saw this [Blog Post](https://www.morling.dev/blog/one-billion-row-challenge/) 
 
 To run my code you will need to have Rust & Python installed, or you can run it in a Dev Container.
 
-Thanks to [Coriolinus](https://github.com/coriolinus/1brc) for the full implementation in Rust.
-
+Thanks to [Coriolinus](https://github.com/coriolinus/1brc) for the full implementation in Rust and the updated generation code.
+Thanks to [Koen Vossen](Ghttps://github.com/koenvo) for the Python implementation for both the Polars & Python STD Library solutions.
 
 ## Generating the data file
 
@@ -12,7 +12,6 @@ There is a feature-gated binary which can create the appropriate measurements li
 ```sh
 time cargo run --release --features generator --bin generate 1000000000
 ```
-
  
 ## Run the challenge
 

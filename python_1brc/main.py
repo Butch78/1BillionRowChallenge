@@ -3,6 +3,11 @@ from multiprocessing import Pool
 import polars as pl
 import pandas as pd
 
+
+# Created by Koen Vossen, 
+# Github: https://github.com/koenvo
+# Twitter/x Handle: https://twitter.com/mr_le_fox
+# https://x.com/mr_le_fox/status/1741893400947839362?s=20
 def create_polars_df():
     pl.Config.set_streaming_chunk_size(4000000)
     return (
@@ -26,6 +31,13 @@ def create_pandas_df():
     df.columns = df.columns.droplevel()
     df = df.sort_index()
     return df
+
+
+# Created by Koen Vossen, 
+# Github: https://github.com/koenvo
+# Twitter/x Handle: https://twitter.com/mr_le_fox
+# Source: https://gist.github.com/koenvo/81e795ff2e0861e75e6dac1630171ce6
+
 
 # Notes:
 # a) Let every process handle a single chunk.
@@ -63,7 +75,9 @@ def read_chunk(filename, chunk_start, chunk_size):
 
     return station_measurements
 
-
+# Created by Koen Vossen, 
+# Github: https://github.com/koenvo
+# Twitter/x Handle: https://twitter.com/mr_le_fox
 def create_df(filename):
     size = os.path.getsize(filename)
 
@@ -117,11 +131,11 @@ def create_df(filename):
 
 if __name__ == "__main__":
     import time
-    # start_time = time.time()
-    # df = create_df("measurements.txt")
-    # took = time.time() - start_time
-    # print(f"Took: {took:.2f} sec")
-    # print(df)
+    start_time = time.time()
+    df = create_df("measurements.txt")
+    took = time.time() - start_time
+    print(f"Took: {took:.2f} sec")
+    print(df)
 
     start_time = time.time()
     df = create_polars_df()
