@@ -8,12 +8,19 @@ default-run = "1brc"
 
 [dependencies]
 polars = { version = "0.36.2", features = ["csv", "lazy", "nightly", "streaming"]}
-anyhow = { version = "1.0.79", optional = true }
 rand = { version = "0.8.5", optional = true }
 rand_distr = { version = "0.4.3", optional = true }
+color-eyre = "0.6.2"
+indicatif = { version = "0.17.7", features = ["rayon"] }
+rayon = "1.8.0"
+regex = "1.10.2"
+rustc-hash = "1.1.0"
+memmap2 = "0.9.3"
+ahash = "0.8.7"
+anyhow = "1.0.79"
 
 [features]
-generator = ["anyhow", "rand", "rand_distr"]
+# generator = ["anyhow", "rand", "rand_distr"]
 
 [[bin]]
 name = "generate"

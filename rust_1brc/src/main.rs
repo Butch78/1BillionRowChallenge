@@ -10,6 +10,9 @@ use std::{
     thread,
 };
 
+mod purple_mist;
+mod thebracket;
+
 /// This code has been sourced from here:
 /// https://github.com/coriolinus/1brc/tree/main
 
@@ -256,6 +259,16 @@ fn main() -> Result<()> {
     // let df = run_polars()?;
     // println!("Time Polars={} seconds", now.elapsed().as_secs());
     // println!("{:?}", df);
+
+    // Crashes Due to much RAM usage
+    // purple_mist::main()?;
+
+    let now = Instant::now();
+    thebracket::read_file()?;
+    println!(
+        "Time Rust The Bracker Implementation={} seconds",
+        now.elapsed().as_secs()
+    );
 
     Ok(())
 }

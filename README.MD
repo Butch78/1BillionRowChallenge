@@ -4,6 +4,8 @@ To run my code you will need to have Rust & Python installed, or you can run it 
 
 Thanks to [Coriolinus](https://github.com/coriolinus/1brc) for the full implementation in Rust and the updated generation code.
 
+Thanks to [TheBracket](https://github.com/thebracket) for the implemtation in Rust using the STD Library and Rayon.
+
 Thanks to [Koen Vossen](https://github.com/koenvo) for the Python implementation for both the Polars & Python STD Library solutions.
 
 ## Generating the data file
@@ -30,6 +32,7 @@ Running the code on my laptop, which is equipped with an i7-1185G7 @ 3.00GHz and
 |        Python + Pandas        |   - Crashed   |
 |        Python + Polars        |   33.86 sec   |
 |        Rust + Polars        |   39 sec   |  
-|       Rust STD Libray        |   17 sec  |
+|       Rust STD Libray        |   16 sec  |
+|      [Rust STD Libray + Rayon](https://github.com/thebracket/one_billion_rows/blob/main/having_fun/src/lib.rs)         |   12 sec  |
 
 
