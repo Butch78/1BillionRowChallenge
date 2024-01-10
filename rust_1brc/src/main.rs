@@ -11,6 +11,7 @@ use std::{
 };
 
 mod purple_mist;
+mod rangnargrootkeorkamp;
 mod thebracket;
 
 /// This code has been sourced from here:
@@ -262,6 +263,8 @@ fn main() -> Result<()> {
 
     // Crashes Due to much RAM usage
     // purple_mist::main()?;
+
+    rangnargrootkeorkamp::main();
 
     let now = Instant::now();
     thebracket::read_file()?;

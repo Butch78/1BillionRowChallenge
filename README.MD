@@ -6,7 +6,10 @@ Thanks to [Coriolinus](https://github.com/coriolinus/1brc) for the full implemen
 
 Thanks to [TheBracket](https://github.com/thebracket) for the implemtation in Rust using the STD Library and Rayon.
 
+Thanks to [Ragnar](https://github.com/RagnarGrootKoerkamp/1brc) for the implementation in Rust using the STD Library and SIMD.
+
 Thanks to [Koen Vossen](https://github.com/koenvo) for the Python implementation for both the Polars & Python STD Library solutions.
+
 
 ## Generating the data file
 
@@ -34,5 +37,6 @@ Running the code on my laptop, which is equipped with an i7-1185G7 @ 3.00GHz and
 |        Rust + Polars        |   39 sec   |  
 |       Rust STD Libray        |   16 sec  |
 |      [Rust STD Libray + Rayon](https://github.com/thebracket/one_billion_rows/blob/main/having_fun/src/lib.rs)         |   12 sec  |
+| Rust STD Libray + SIMD |  8 sec | [Full Blog](https://curiouscoding.nl/posts/1brc/)|
 
 

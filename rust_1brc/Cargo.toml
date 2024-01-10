@@ -18,6 +18,10 @@ rustc-hash = "1.1.0"
 memmap2 = "0.9.3"
 ahash = "0.8.7"
 anyhow = "1.0.79"
+assert2 = "0.3.11"
+colored = "2.1.0"
+fxhash = "0.2.1"
+ptr_hash = { git = "https://github.com/ragnargrootkoerkamp/ptrhash", default_features = false }
 
 [features]
 # generator = ["anyhow", "rand", "rand_distr"]
